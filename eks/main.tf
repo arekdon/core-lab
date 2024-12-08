@@ -5,6 +5,8 @@ module "eks_cluster_al2023" {
   cluster_name    = "${local.name_prefix}-al2023"
   cluster_version = "1.31"
 
+  cluster_endpoint_public_access = true
+
   # EKS Addons
   cluster_addons = {
     coredns                = {}
