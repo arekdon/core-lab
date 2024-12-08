@@ -1,0 +1,30 @@
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.88.0  # Get the latest version from GitHub releases
+    hooks:
+      - id: terraform_fmt
+        args:
+          - --args=-recursive
+          - --args=-diff
+          - --args=-write=true
+      - id: terraform_docs
+        args:
+          - --args=--sort-by required
+      - id: terraform_tflint
+        args:
+          - --args=--module
+      - id: terraform_validate
+      - id: terraform_checkov
+        args:
+          - --args=--quiet
+          - --args=--skip-check CKV_AWS_115,CKV_AWS_116
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0  # Get the latest version from GitHub releases
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
